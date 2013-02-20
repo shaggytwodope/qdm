@@ -12,6 +12,8 @@ Installation
 Usage
 =====
 
-To use this quick display manager edit your ~/.xinitrc to the following:
+Edit your ~/.xinitrc to the following:
+
     #!/bin/bash
     [ -r "$HOME/.qdm/qdm.rc" ] && . "$HOME/.qdm/qdm.rc"
+    # end of file
