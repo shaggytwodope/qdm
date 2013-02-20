@@ -80,6 +80,8 @@ qdm() {
                 666) wm_power;;
             esac
         done
+    else
+        echo "Install the package dialog"
     fi
 }
 
