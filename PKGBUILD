@@ -36,7 +36,7 @@ build() {
 
 	# Create pkgdir folders
 	mkdir -p "$pkgdir/etc/xdg/$pkgname"
-	install -Dm644 "$srcdir/$_gitname-build/*" "$pkgdir/etc/xdg/$pkgname/"
+	cp -r "$srcdir/$_gitname-build" "$pkgdir/etc/xdg/"
 
 	# Install
 	install -Dm755 "$srcdir/$_gitname-build/$pkgname.sh" "$pkgdir/usr/bin/$pkgname"
