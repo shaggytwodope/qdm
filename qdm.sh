@@ -71,7 +71,7 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
             #     exec sample
             #     ;;
             11)
-                $EDITOR "${wm_path}qdm.rc"
+                $EDITOR "${wm_path}qdm.sh"
                 ;;
             666) 
                 reboot
