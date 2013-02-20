@@ -3,12 +3,16 @@
 ## https://github.com/idk/qdm#installation
 ## 03-20-2013 pdq
 
-## should be no need to edit this file
+USE_SOUNDS=1 # 1 = on, 2 = off
+
+## should be no little to edit the file
+
+[ ! -f /usr/bin/ogg123 ] && [ $USE_SOUNDS = 1 ] && echo "Install vorbis-tools (ogg123) for sounds" && exit 0
 
 ## ensure dialog is installed
-if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
+if [ -f /usr/bin/dialog ]; then
 
-    ## path to sound and style files
+    ## path qdm files
     wm_path="${HOME}/.qdm/"
 
     ## style the messagebox
@@ -17,7 +21,7 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
     fi
 
     ## login sound
-    ogg123 -q "${wm_path}voice-system-activated.ogg"
+    [ $USE_SOUNDS = 1 ] && ogg123 -q "${wm_path}voice-system-activated.ogg"
 
     ## start urxvt daemon
     [ -z "$(pidof urxvtd)" ] && [ -f /usr/bin/urxvtd ] && urxvtd -q -o -f
@@ -35,7 +39,7 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
     [ -f "$HOME/.gtkrc-2.0" ] && export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
     ## truecrypt mounted success file
-    if [ -f "/media/truecrypt1/test" ] ; then
+    if [ $USE_SOUNDS = 1 ] && [ -f "/media/truecrypt1/test" ] ; then
         ogg123 -q "${wm_path}desktop-login.ogg"
     fi
 
@@ -83,7 +87,7 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
         esac
     done 
 else
-    echo "Install the packages dialog and ogg123 ... then re-run"
+    echo "Install the package dialog... then re-run"
 fi
 
 exit 0
