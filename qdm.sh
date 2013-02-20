@@ -8,7 +8,7 @@
 
 ## to use this quick display manager edit your ~/.xinitrc to the following:
 #    #!/bin/bash
-#    [ -r "$HOME/.qdm/qdm.rc" ] && . "$HOME/.qdm/qdm.rc"
+#    [ -r "$HOME/.qdm/qdm.sh" ] && . "$HOME/.qdm/qdm.sh"
 
 
 ## should be no need to edit the following
