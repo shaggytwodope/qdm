@@ -13,7 +13,11 @@ Installation
 Configuration
 =============
 
-Edit your ~/.xinitrc to the following:
+Backup your ~/.xinitrc
+
+	cp ~/.xinitrc ~/.xinitrc.bak
+
+Edit current ~/.xinitrc or create new file and make it exectuable, add the following code:
 
     #!/bin/bash
     [ -r "$HOME/.qdm/qdm.sh" ] && . "$HOME/.qdm/qdm.sh"
