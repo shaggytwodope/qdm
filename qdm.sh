@@ -3,9 +3,17 @@
 ## https://github.com/idk/qdm#installation
 ## 03-20-2013 pdq
 
-USE_SOUNDS=1 # 1 = on, 2 = off
+USE_SOUNDS=0 # 1 = on, 0 = off
 
-## should be little need to edit the file, but you always do what you want to do anyways, right?
+# power options
+_power_off="poweroff"
+_reboot="reboot"
+
+
+## should be little need to edit the file
+## but you always do what you want to do anyways, right?
+
+
 qdm() {
     [ ! -f /usr/bin/ogg123 ] && [ $USE_SOUNDS = 1 ] && echo "Install vorbis-tools (ogg123) for sounds" && exit 0
 
@@ -15,14 +23,12 @@ qdm() {
         ## path qdm files
         wm_path="${HOME}/.qdm/"
 
-        ## temporary files
-        mkdir -p /tmp/tmp 2>/dev/null
-        _TMP=/tmp/tmp 2>/dev/null
-
         ## style the messagebox
         if [ ! -f "$HOME/.dialogrc" ]; then
             ln -sfn "${wm_path}dialogrc" "$HOME/.dialogrc"
         fi
+
+        echo "loading quick display manager..."
 
         ## login sound
         [ $USE_SOUNDS = 1 ] && ogg123 -q "${wm_path}voice-system-activated.ogg"
@@ -48,7 +54,7 @@ qdm() {
         fi
 
         ## dialog menubox
-        wm_cmd=(dialog --keep-tite --menu "Select interface:" 22 76 16)
+        wm_cmd=(dialog --backtitle "quick display manager" --title "qdm" --menu "Select interface:" 22 76 16)
         wm_options=(1 'e17' 
                     2 'Awesome Window Manager'
                     3 'kde'
@@ -56,7 +62,7 @@ qdm() {
                     5 'xfce'
                     # 6 'Sample'
                     11 'Configure'
-                    666 'Reboot')
+                    666 'Power options')
 
         choices=$("${wm_cmd[@]}" "${wm_options[@]}" 2>&1 >/dev/tty)
 
@@ -70,24 +76,20 @@ qdm() {
                 4) exec razor-session;;
                 5) exec startxfce4;;
                 # 6) exec sample;;
-                11) wm_configure && echo "re-loading quick display manager..." && qdm;;
-                666) reboot;;
+                11) wm_configure && qdm;;
+                666) wm_power;;
             esac
         done
-
-    else
-        echo "Install the package dialog... then re-run"
     fi
 }
 
 wm_configure() {
-    conf_dialog=(dialog --keep-tite --menu "Select file to edit in $EDITOR:" 22 76 16)
+    conf_dialog=(dialog --backtitle "quick display manager" --title "qdm" --menu "Select file to edit in $EDITOR:" 22 76 16)
     conf_options=(1 'Edit script (~/.qdm/qdm.sh)' 
                   2 'Edit colors (~/.dialogrc)')
 
     conf_choices=$("${conf_dialog[@]}" "${conf_options[@]}" 2>&1 >/dev/tty)
 
-    ## execute selected option
     for choice in $conf_choices
     do
         case $choice in
@@ -95,6 +97,27 @@ wm_configure() {
             2) $EDITOR "${HOME}/.dialogrc";;
         esac
     done
+}
+
+wm_power() {
+      power_dialog=(dialog --clear --backtitle "quick display manager" --title "qdm" --menu "Power options" 20 70 16)
+      power_options=(1 'Reboot' 
+                     2 'Power off'
+                     3 'Return to qdm')
+
+    power_choices=$("${power_dialog[@]}" "${power_options[@]}" 2>&1 >/dev/tty)
+
+    for choice in $power_choices
+    do
+        case $choice in
+            1) dialog --clear --backtitle "quick display manager" --title "qdm" --yesno "Reboot, really?" 10 30 && [ $? = 0 ] && echo "$_reboot" && exit 0;;
+            2) dialog --clear --backtitle "quick display manager" --title "qdm" --yesno "Power off, really?" 10 30 && [ $? = 0 ] && echo "$_power_off" && exit 0;;
+            # 3) echo "re-loading quick display manager..." && qdm;;
+            3) qdm;;
+        esac
+    done
+
+    qdm
 }
 
 qdm
