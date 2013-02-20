@@ -45,7 +45,8 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
                 2 'Awesome Window Manager'
                 3 'kde'
                 4 'Razor-QT'
-                # 5 'Sample'
+                5 'xfce'
+                # 6 'Sample'
                 11 'Configure'
                 666 'Reboot')
 
@@ -67,7 +68,10 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
             4)
                 exec razor-session
                 ;;
-            # 5)
+            5)
+                exec startxfce4
+                ;;
+            # 6)
             #     exec sample
             #     ;;
             11)
