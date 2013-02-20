@@ -1,31 +1,9 @@
 #!/bin/bash
 ## qdm - tested on Arch Linux x86_64
+## https://github.com/idk/qdm#installation
 ## 03-20-2013 pdq
 
-# Installation
-# ============
-
-#     git clone git@github.com:idk/qdm.git
-#     cp qdm ~/.qdm
-
-# Configuration
-# =============
-
-# Edit your ~/.xinitrc to the following:
-
-#     #!/bin/bash
-#     [ -r "$HOME/.qdm/qdm.sh" ] && . "$HOME/.qdm/qdm.sh"
-#     # end of file
-
-# Usage
-# =====
-
-# Login to tty/virtual console and run the command:
-
-#     xinit
-
-
-## should be no need to edit the following
+## should be no need to edit this file
 
 ## ensure dialog is installed
 if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
