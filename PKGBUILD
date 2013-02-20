@@ -30,14 +30,14 @@ build() {
 	msg "GIT checkout done or server timeout"
 	msg "Starting make..."
 
-	rm -rf "$srcdir/$_gitname-build"
-	git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-	cd "$srcdir/$_gitname-build"
+	rm -rf "$srcdir/$_gitname"
+	git clone "$srcdir/$_gitname"
+	cd "$srcdir/$_gitname"
 
 	# Create pkgdir folders
 	mkdir -p "$pkgdir/etc/xdg/$pkgname"
-	cp -r "$srcdir/$_gitname-build" "$pkgdir/etc/xdg/"
+	cp -r "$srcdir/$_gitname" "$pkgdir/etc/xdg/"
 
 	# Install
-	install -Dm755 "$srcdir/$_gitname-build/$pkgname.sh" "$pkgdir/usr/bin/$pkgname"
+	install -Dm755 "$srcdir/$_gitname/$pkgname.sh" "$pkgdir/usr/bin/$pkgname"
 }
