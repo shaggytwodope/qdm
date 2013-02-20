@@ -116,8 +116,8 @@ wm_power() {
     for choice in $power_choices
     do
         case $choice in
-            1) dialog --clear --backtitle "quick display manager" --title "qdm" --yesno "Reboot, really?" 10 30 && [ $? = 0 ] && echo "$_reboot" && exit 0;;
-            2) dialog --clear --backtitle "quick display manager" --title "qdm" --yesno "Power off, really?" 10 30 && [ $? = 0 ] && echo "$_power_off" && exit 0;;
+            1) dialog --clear --backtitle "$wm_title" --title "qdm" --yesno "Reboot, really?" 10 30 && [ $? = 0 ] && echo "$_reboot" && exit 0;;
+            2) dialog --clear --backtitle "$wm_title" --title "qdm" --yesno "Power off, really?" 10 30 && [ $? = 0 ] && echo "$_power_off" && exit 0;;
             # 3) echo "re-loading quick display manager..." && qdm;;
             3) qdm;;
         esac
