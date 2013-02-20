@@ -42,3 +42,6 @@ Actual Usage
 Login to tty/virtual console and run:
 
     xinit
+
+
+Check out https://www.linuxdistrocommunity.com
