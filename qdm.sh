@@ -28,6 +28,10 @@ qdm() {
             ln -sfn "${wm_path}dialogrc" "$HOME/.dialogrc"
         fi
 
+        wm_version=$(lsb_release -sir)
+        wm_uname=$(uname -mrs)
+        wm_title="quick display manager - $wm_version $wm_uname - $(date +%r)"
+
         echo "loading quick display manager..."
 
         ## login sound
@@ -54,7 +58,7 @@ qdm() {
         fi
 
         ## dialog menubox
-        wm_cmd=(dialog --backtitle "quick display manager" --title "qdm" --menu "Select interface:" 22 76 16)
+        wm_cmd=(dialog --backtitle "$wm_title" --title "qdm" --menu "Select interface:" 22 76 16)
         wm_options=(1 'e17' 
                     2 'Awesome Window Manager'
                     3 'kde'
@@ -86,7 +90,7 @@ qdm() {
 }
 
 wm_configure() {
-    conf_dialog=(dialog --backtitle "quick display manager" --title "qdm" --menu "Select file to edit in $EDITOR:" 22 76 16)
+    conf_dialog=(dialog --backtitle "$wm_title" --title "qdm" --menu "Select file to edit in $EDITOR:" 22 76 16)
     conf_options=(1 'Edit script (~/.qdm/qdm.sh)' 
                   2 'Edit colors (~/.dialogrc)')
 
@@ -102,7 +106,7 @@ wm_configure() {
 }
 
 wm_power() {
-      power_dialog=(dialog --clear --backtitle "quick display manager" --title "qdm" --menu "Power options" 20 70 16)
+      power_dialog=(dialog --clear --backtitle "$wm_title" --title "qdm" --menu "Power options" 20 70 16)
       power_options=(1 'Reboot' 
                      2 'Power off'
                      3 'Return to qdm')
