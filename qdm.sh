@@ -42,10 +42,16 @@ Edit current ~/.xinitrc or create new file and make it exectuable, add the follo
 [ -r \"\$HOME/.config/qdm/qdm.sh\" ] && . \"\$HOME/.config/qdm/qdm.sh\"
 # end of file
 
-Usage
-=====
+Test Usage
+==========
 
-Login to tty/virtual console and run the command:
+In terminal/tty run:
+/usr/bin/qdm
+
+Actual Usage
+============
+
+Login to tty/virtual console and run:
 xinit"
             exit 0
         fi
