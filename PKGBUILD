@@ -14,7 +14,7 @@ makedepends=('git')
 _gitroot="git://github.com/idk/qdm.git"
 _gitname="qdm"
 
-install=$pkgname.install
+#install=$pkgname.install
 
 build() {
 	cd "$srcdir"
