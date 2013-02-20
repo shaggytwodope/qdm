@@ -28,14 +28,14 @@ qdm() {
 
         if [ ! -f $XDG_CONFIG_HOME"/qdm/qdm.sh" ]; then
             echo "This appears to be the 1st time running this utility..."
-            echo "Creating local qdm configuration directory at $XDG_CONFIG_HOME/qdm"
-            cp -rv /etc/xdg/qdm $XDG_CONFIG_HOME/
+            echo "Creating qdm directory at $XDG_CONFIG_HOME/qdm"
+            cp -r /etc/xdg/qdm $XDG_CONFIG_HOME/
             echo "qdm configuration files created..." && echo "" && sleep 2s
             echo "Configuration
 =============
 
 Backup your ~/.xinitrc
-`cp ~/.xinitrc ~/.xinitrc.bak`
+cp ~/.xinitrc ~/.xinitrc.bak
 
 Edit current ~/.xinitrc or create new file and make it exectuable, add the following code:
 #!/bin/bash
@@ -46,7 +46,7 @@ Usage
 =====
 
 Login to tty/virtual console and run the command:
-`xinit`"
+xinit"
             exit 0
         fi
 
