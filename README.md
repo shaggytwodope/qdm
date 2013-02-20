@@ -3,6 +3,8 @@ qdm
 
 quick display manager for gnu/linux
 
+[logo]: https://dl.dropbox.com/u/9702684/022031.png "qdm"
+
 Installation
 ============
 
