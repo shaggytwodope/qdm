@@ -39,7 +39,7 @@ cp ~/.xinitrc ~/.xinitrc.bak
 
 Edit current ~/.xinitrc or create new file and make it exectuable, add the following code:
 #!/bin/bash
-[ -r \"$HOME/.config/qdm/qdm.sh\" ] && . \"$HOME/.config/qdm/qdm.sh\"
+[ -r \"\$HOME/.config/qdm/qdm.sh\" ] && . \"\$HOME/.config/qdm/qdm.sh\"
 # end of file
 
 Usage
