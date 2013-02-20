@@ -30,8 +30,6 @@ build() {
 	msg "GIT checkout done or server timeout"
 	msg "Starting make..."
 
-	rm -rf "$srcdir/$_gitname"
-	git clone "$srcdir/$_gitname"
 	cd "$srcdir/$_gitname"
 
 	# Create pkgdir folders
