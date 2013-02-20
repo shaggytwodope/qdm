@@ -5,7 +5,7 @@
 
 USE_SOUNDS=1 # 1 = on, 2 = off
 
-## should be no little to edit the file
+## should be little need to edit the file, but you always do what you want to do anyways, right?
 
 [ ! -f /usr/bin/ogg123 ] && [ $USE_SOUNDS = 1 ] && echo "Install vorbis-tools (ogg123) for sounds" && exit 0
 
