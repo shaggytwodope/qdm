@@ -27,7 +27,7 @@ qdm() {
     if [ -f /usr/bin/dialog ]; then
 
         if [ ! -f $XDG_CONFIG_HOME"/qdm/qdm.sh" ]; then
-            echo "This appears to be the 1st time running this utility..."
+            echo "" && echo "This appears to be the 1st time running this utility..."
             echo "Creating qdm directory at $XDG_CONFIG_HOME/qdm"
             cp -r /etc/xdg/qdm $XDG_CONFIG_HOME/
             echo "qdm configuration files created..." && echo "" && sleep 2s

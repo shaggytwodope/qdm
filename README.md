@@ -7,11 +7,13 @@ quick display manager for gnu/linux
 Installation
 ============
 
-Non-Archlinux
-    git clone git@github.com:idk/qdm.git
+`Non-Archlinux`
+
+	git clone git@github.com:idk/qdm.git
     cp -r qdm ~/.config/
 
-Archlinux
+`Archlinux`
+
 	wget https://raw.github.com/idk/qdm/master/PKGBUILD -O /tmp/PKGBUILD && cd /tmp && makepkg -sf PKGBUILD && sudo pacman -U qdm-* && cd && /usr/bin/qdm
 
 Configuration
