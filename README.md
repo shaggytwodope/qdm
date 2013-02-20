@@ -8,7 +8,7 @@ Installation
 ============
 
     git clone git@github.com:idk/qdm.git
-    cp qdm ~/.qdm
+    cp -r qdm ~/.qdm
 
 Configuration
 =============
