@@ -1,14 +1,28 @@
 #!/bin/bash
-## tested onArch Linux x86_64
+## qdm - tested on Arch Linux x86_64
 ## 03-20-2013 pdq
 
-## installation
-## git clone git@github.com:idk/qdm.git
-## cp qdm ~/.qdm
+# Installation
+# ============
 
-## to use this quick display manager edit your ~/.xinitrc to the following:
-#    #!/bin/bash
-#    [ -r "$HOME/.qdm/qdm.sh" ] && . "$HOME/.qdm/qdm.sh"
+#     git clone git@github.com:idk/qdm.git
+#     cp qdm ~/.qdm
+
+# Configuration
+# =============
+
+# Edit your ~/.xinitrc to the following:
+
+#     #!/bin/bash
+#     [ -r "$HOME/.qdm/qdm.sh" ] && . "$HOME/.qdm/qdm.sh"
+#     # end of file
+
+# Usage
+# =====
+
+# Login to tty/virtual console and run the command:
+
+#     xinit
 
 
 ## should be no need to edit the following
