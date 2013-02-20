@@ -2,6 +2,10 @@
 ## tested onArch Linux x86_64
 ## 03-20-2013 pdq
 
+## installation
+## git clone git@github.com:idk/qdm.git
+## cp qdm ~/.qdm
+
 ## to use this quick display manager edit your ~/.xinitrc to the following:
 #    #!/bin/bash
 #    [ -r "$HOME/.qdm/qdm.rc" ] && . "$HOME/.qdm/qdm.rc"
@@ -49,6 +53,7 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
                 2 'Awesome Window Manager'
                 3 'kde'
                 4 'Razor-QT'
+                # 5 'Sample'
                 11 'Configure'
                 666 'Reboot')
 
@@ -70,6 +75,9 @@ if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ogg123 ]; then
             4)
                 exec razor-session
                 ;;
+            # 5)
+            #     exec sample
+            #     ;;
             11)
                 $EDITOR "${wm_path}qdm.rc"
                 ;;
