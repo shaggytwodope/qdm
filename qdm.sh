@@ -1,13 +1,19 @@
 #!/bin/bash
 ## qdm - tested on Arch Linux x86_64
-## https://github.com/idk/qdm#installation
 ## 03-20-2013 pdq
+
+## Non-Archlinux installation
+## https://github.com/idk/qdm#installation
+
+## Archlinux instalation method
+## wget https://raw.github.com/idk/qdm/master/PKGBUILD -O /tmp/PKGBUILD && cd /tmp && makepkg -sf PKGBUILD && sudo pacman -U qdm-* && cd
 
 USE_SOUNDS=0 # 1 = on, 0 = off
 
 # power options
 _power_off="poweroff"
 _reboot="reboot"
+
 
 
 ## should be little need to edit the file
@@ -20,8 +26,31 @@ qdm() {
     ## ensure dialog is installed
     if [ -f /usr/bin/dialog ]; then
 
-        ## path qdm files
-        wm_path="${HOME}/.qdm/"
+        if [ ! -f $XDG_CONFIG_HOME"/qdm/qdm.sh" ]; then
+            echo "This appears to be the 1st time running this utility..."
+            echo "Creating local qdm configuration directory at $XDG_CONFIG_HOME/qdm"
+            cp -rv /etc/xdg/qdm $XDG_CONFIG_HOME/
+            echo "qdm configuration files created..." && echo "" && sleep 2s
+            echo "Configuration
+=============
+
+Backup your ~/.xinitrc
+`cp ~/.xinitrc ~/.xinitrc.bak`
+
+Edit current ~/.xinitrc or create new file and make it exectuable, add the following code:
+#!/bin/bash
+[ -r \"$HOME/.config/qdm/qdm.sh\" ] && . \"$HOME/.config/qdm/qdm.sh\"
+# end of file
+
+Usage
+=====
+
+Login to tty/virtual console and run the command:
+`xinit`"
+            exit 0
+        fi
+
+        wm_path="$XDG_CONFIG_HOME/qdm/"
 
         ## style the messagebox
         if [ ! -f "$HOME/.dialogrc" ]; then
@@ -91,7 +120,7 @@ qdm() {
 
 wm_configure() {
     conf_dialog=(dialog --backtitle "$wm_title" --title "qdm" --menu "Select file to edit in $EDITOR:" 22 76 16)
-    conf_options=(1 'Edit script (~/.qdm/qdm.sh)' 
+    conf_options=(1 'Edit script (${wm_path}qdm.sh)' 
                   2 'Edit colors (~/.dialogrc)')
 
     conf_choices=$("${conf_dialog[@]}" "${conf_options[@]}" 2>&1 >/dev/tty)
