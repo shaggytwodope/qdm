@@ -16,8 +16,7 @@ USE_SOUNDS=0 # 1 = on, 0 = off
 _power_off="poweroff"
 _reboot="reboot"
 
-$XDG_CONFIG_HOME="$HOME.config"
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 ## should be little need to edit the file
 ## but you always do what you want to do anyways, right?
 
