@@ -8,7 +8,7 @@
 ## Archlinux instalation method
 ## wget https://raw.github.com/idk/qdm/master/PKGBUILD -O /tmp/PKGBUILD && cd /tmp && makepkg -sf PKGBUILD && sudo pacman -U qdm-* && cd
 
-exit 0
+#exit 0
 
 USE_SOUNDS=0 # 1 = on, 0 = off
 
