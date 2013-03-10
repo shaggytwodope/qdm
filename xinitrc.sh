@@ -8,18 +8,17 @@
 ## Archlinux instalation method
 ## wget https://raw.github.com/idk/qdm/master/PKGBUILD -O /tmp/PKGBUILD && cd /tmp && makepkg -sf PKGBUILD && sudo pacman -U qdm-* && cd
 
-exit 0
-
 USE_SOUNDS=0 # 1 = on, 0 = off
 
 # power options
 _power_off="poweroff"
 _reboot="reboot"
 
-$XDG_CONFIG_HOME="$HOME.config"
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
+
 ## should be little need to edit the file
 ## but you always do what you want to do anyways, right?
+
 
 qdm() {
     [ ! -f /usr/bin/ogg123 ] && [ $USE_SOUNDS = 1 ] && echo "Install vorbis-tools (ogg123) for sounds" && exit 0
@@ -73,6 +72,26 @@ xinit"
         ## login sound
         [ $USE_SOUNDS = 1 ] && ogg123 -q "${wm_path}voice-system-activated.ogg"
 
+        ## start urxvt daemon
+        [ -z "$(pidof urxvtd)" ] && [ -f /usr/bin/urxvtd ] && urxvtd -q -o -f
+
+        ## start clipboard manager
+        if [ -f /usr/bin/autocutsel ]; then
+            killall -q autocutsel
+            autocutsel -fork &
+            autocutsel -selection PRIMARY -fork &
+        fi
+
+        ## export some variables
+        [ -z "$EDITOR" ] && export EDITOR=nano      # if not set default to nano
+        [ -z "$BROWSER" ] && export BROWSER=firefox # if not set default to firefox
+        [ -f "$HOME/.gtkrc-2.0" ] && export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+        ## truecrypt mounted success file
+        if [ $USE_SOUNDS = 1 ] && [ -f "/media/truecrypt1/test" ] ; then
+            ogg123 -q "${wm_path}desktop-login.ogg"
+        fi
+
         ## dialog menubox
         wm_cmd=(dialog --backtitle "$wm_title" --title "qdm" --menu "Select interface:" 22 76 16)
         wm_options=(1 'e17' 
@@ -85,12 +104,6 @@ xinit"
                     666 'Power options')
 
         choices=$("${wm_cmd[@]}" "${wm_options[@]}" 2>&1 >/dev/tty)
-
-
-DEFAULT_SESSION=$2
-_SESSION="$3"
-
-[ $_SESSION >= 1 ] && _SESSION="-- :$_SESSION"
 
         ## execute selected option
         for choice in $choices
