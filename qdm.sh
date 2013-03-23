@@ -101,7 +101,7 @@ _SESSION="$3"
                 4) exec razor-session;;
                 5) exec startxfce4;;
                 # 6) exec sample;;
-                11) wm_configure && qdm;;
+                11) wm_configure && xinit;;
                 666) wm_power;;
             esac
         done
